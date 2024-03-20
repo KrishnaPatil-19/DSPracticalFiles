@@ -1,55 +1,67 @@
 #include <iostream>
-#include <stack>
 using namespace std;
 
-const int MAX_SIZE = 10;
+#define MAX_SIZE 100
 
 class Stack {
-    private:
-        stack<int> st;
-    public:
-        bool isEmpty(){
-            return st.empty();
-        }
+private:
+    int arr[MAX_SIZE];
+    int top;
 
-        bool isFull(){
-            return st.size() == MAX_SIZE;
-        }
+public:
+    Stack() {
+        top = -1; // Initialize top as -1 to indicate an empty stack
+    }
 
-        void push(int value){
-            if(isFull()){
-                cout << "Stack Overflow. Cannot push " << value << ". Stack is full." << endl;
-            } else {
-                st.push(value);
-                cout << value << " pushed to the stack." << endl;
-            }
+    void push(int value) {
+        if (isFull()) {
+            cout << "Stack Overflow - Cannot push more elements.\n";
+            return;
         }
+        arr[++top] = value;
+    }
 
-        void pop(){
-            if(isEmpty()){
-                cout << "Stack Underflow. Cannot pop from an empty stack." << endl;
-            } else {
-                cout << st.top() << " popped from the stack." << endl;
-                st.pop();
-            }
+    void pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow - Cannot pop from an empty stack.\n";
+            return;
         }
+        top--;
+    }
 
-        void display(){
-            if(isEmpty()){
-                cout << "Stack is empty." << endl;
-            } else {
-                cout << "Stack elements: ";
-                stack<int> temp = st;
-                while(!temp.empty()){
-                    cout << temp.top() << " ";
-                    temp.pop();
-                }
-                cout << endl;
-            }
+    int peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty.\n";
+            return -1; // Return a default value indicating an empty stack
         }
+        return arr[top];
+    }
+
+    bool isEmpty() {
+        return (top < 0);
+    }
+
+    bool isFull() {
+        return (top >= MAX_SIZE - 1);
+    }
+
+    int size() {
+        return top + 1;
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Stack is empty.\n";
+            return;
+        }
+        cout << "Stack elements:\n";
+        for (int i = top; i >= 0; --i) {
+            cout << arr[i] << "\n";
+        }
+    }
 };
 
-int main(){
+int main() {
     Stack stack;
 
     stack.push(5);
