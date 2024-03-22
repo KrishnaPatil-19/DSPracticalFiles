@@ -1,5 +1,6 @@
 #include <iostream>
 #define MAX_SIZE 100
+using namespace std;
 
 class LinearQueue {
 private:
@@ -14,22 +15,22 @@ public:
 
     void enqueue(int x) {
         if (isFull()) {
-            std::cout << "Queue Overflow\n";
+            cout << "Queue Overflow\n";
             return;
         }
         if (isEmpty()) // If queue is empty, move front to 0
             front = 0;
         rear++; // Increment rear pointer
         arr[rear] = x; // Insert element at rear
-        std::cout << "Inserted " << x << " into the queue\n";
+        cout << "Inserted " << x << " into the queue\n";
     }
 
     void dequeue() {
         if (isEmpty()) { // Check if queue is empty
-            std::cout << "Queue Underflow\n";
+            cout << "Queue Underflow\n";
             return;
         }
-        std::cout << "Deleted " << arr[front] << " from the queue\n";
+        cout << "Deleted " << arr[front] << " from the queue\n";
         if (front == rear) { // If only one element in the queue
             front = -1; // Reset front pointer
             rear = -1;  // Reset rear pointer
@@ -40,7 +41,7 @@ public:
 
     int peek() const {
         if (isEmpty()) {
-            std::cout << "Queue is empty\n";
+            cout << "Queue is empty\n";
             return -1; // Return -1 for an empty queue (assuming -1 is not a valid element)
         }
         return arr[front]; // Return element at front without removing it
@@ -48,13 +49,13 @@ public:
 
     void display() const {
         if (isEmpty()) {
-            std::cout << "Queue is empty\n";
+            cout << "Queue is empty\n";
         } else {
-            std::cout << "Queue elements: ";
+            cout << "Queue elements: ";
             for (int i = front; i <= rear; i++) {
-                std::cout << arr[i] << " ";
+                cout << arr[i] << " ";
             }
-            std::cout << std::endl;
+            cout << endl;
         }
     }
 
@@ -77,7 +78,7 @@ int main() {
 
     q.display(); // Display the queue elements
 
-    std::cout << "Front element: " << q.peek() << std::endl; // Peek at the front element
+    cout << "Front element: " << q.peek() << endl; // Peek at the front element
 
     q.dequeue();
     q.dequeue();
